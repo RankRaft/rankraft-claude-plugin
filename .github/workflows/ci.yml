@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Manifests are valid JSON and name the same plugin
+        run: |
+          node -e '
+            const p = require("./.claude-plugin/plugin.json");
+            const m = require("./.claude-plugin/marketplace.json");
+            if (!m.plugins.some(x => x.name === p.name)) { console.error("marketplace does not list the plugin"); process.exit(1); }
+            console.log(`${p.name}@${p.version} ok`);'
+      - name: The vendored skill is present and parses
+        run: |
+          test -f skills/rankraft/SKILL.md
+          head -5 skills/rankraft/SKILL.md | grep -q '^name: rankraft$'
+          bash -n skills/rankraft/scripts/smoke.sh
+      - name: The vendored copy matches upstream
+        # A hand edit under skills/ would be overwritten by the next sync; this
+        # makes that a red build instead of a surprise.
+        run: |
+          ./scripts/sync-skill.sh
+          git diff --exit-code -- skills/ ':!skills/rankraft/.upstream-commit'

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.json",
+  "name": "rankraft",
+  "owner": { "name": "RankRaft AI", "url": "https://rankraft.ai" },
+  "plugins": [
+    {
+      "name": "rankraft",
+      "source": "./",
+      "description": "Build against the RankRaft AI API and SDKs: endpoints, filters, cursors, rate limits, error codes, and when to use the MCP server instead."
+    }
+  ]
+}

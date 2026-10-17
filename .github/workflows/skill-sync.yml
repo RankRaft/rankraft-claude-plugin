@@ -1,0 +1,27 @@
+name: Skill sync
+
+# The skill is authored in RankRaft/rankraft-skill. This plugin only
+# vendors it, so the only way to learn that upstream moved is to look; this
+# looks every day and opens a PR when the copy no longer matches.
+on:
+  schedule:
+    - cron: "37 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/sync-skill.sh
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: skill-sync
+          title: "chore: the skill changed upstream"
+          commit-message: "chore: sync skills/rankraft from rankraft-skill"
+          body: "RankRaft/rankraft-skill has new commits. This PR vendors them; bump `version` in `.claude-plugin/plugin.json` before merging if the change is user-visible."
+          delete-branch: true

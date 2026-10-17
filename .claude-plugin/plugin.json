@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "rankraft",
+  "version": "0.1.0",
+  "description": "Build against the RankRaft AI API and SDKs: endpoints, filters, cursors, rate limits, error codes, and when to use the MCP server instead.",
+  "author": { "name": "RankRaft AI", "url": "https://rankraft.ai" },
+  "homepage": "https://docs.rankraft.ai",
+  "repository": "https://github.com/RankRaft/rankraft-claude-plugin",
+  "license": "MIT",
+  "keywords": ["rankraft", "ai-visibility", "aeo", "geo", "api", "sdk"]
+}
