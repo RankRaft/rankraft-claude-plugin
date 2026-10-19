@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "rankraft": {
+      "type": "http",
+      "url": "https://mcp.rankraft.ai/mcp"
+    }
+  }
+}

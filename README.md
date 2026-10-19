@@ -34,6 +34,16 @@ Do not edit anything under `skills/`. Change it upstream and run
 `./scripts/sync-skill.sh`; CI fails if the vendored copy and upstream disagree,
 and a daily workflow opens a PR when upstream moves.
 
+## Also bundles the MCP connector
+
+`.mcp.json` points Claude at `mcp.rankraft.ai`, the live, read-only MCP server
+(every paid RankRaft AI plan). Installing this plugin gives you both: the skill
+for writing code against the REST API (Enterprise, `rr_api_…` key), and this
+connector for asking questions about your data directly in a chat - no API key
+involved, you sign in with your RankRaft AI account through the server's own
+OAuth flow when you connect it. See the skill's own "Decide first: REST or MCP?"
+table for which one fits a given task.
+
 ## Licence
 
 MIT
